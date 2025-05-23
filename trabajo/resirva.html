@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Reserva de Parqueadero con Costo</title>
+<style>
+  body { font-family: Arial; margin: 40px; background: #f4f4f4; }
+  form { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+  label, input, select, button { width: 100%; margin-top: 10px; }
+  #resultado { text-align: center; margin-top: 20px; color: green; font-weight: bold; }
+  table { margin: 30px auto; border-collapse: collapse; width: 80%; background: #fff; }
+  th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+  th { background-color: #eee; }
+</style>
+</head>
+<body>
+
+<h2>Reserva tu Espacio en el Parqueadero</h2>
+
+<form id="formReserva">
+    <label for="placa">Placa del Vehículo:</label>
+    <input type="text" id="placa" name="placa" required />
+
+    <label for="nombre">Nombre del Conductor:</label>
+    <input type="text" id="nombre" name="nombre" required />
+
+    <label for="identificacion">Identificación:</label>
+    <input type="text" id="identificacion" name="identificacion" required />
+
+    <label for="tipo">Tipo de Vehículo:</label>
+    <select id="tipo" name="tipo" required>
+        <option value="">Seleccione</option>
+        <option value="carro">Carro</option>
+        <option value="moto">Moto</option>
+    </select>
+
+    <label for="entrada">Hora de Entrada:</label>
+    <input type="time" id="entrada" name="entrada" required />
+
+    <label for="salida">Hora de Salida:</label>
+    <input type="time" id="salida" name="salida" required />
+
+    <p><strong>Costo estimado: $<span id="costo">0</span></strong></p>
+
+    <button type="submit">Reservar</button>
+</form>
+
+<h3>Reservas Registradas</h3>
+<table id="tablaReservas">
+  <thead>
+    <tr>
+      <th>Placa</th>
+      <th>Nombre</th>
+      <th>ID</th>
+      <th>Tipo</th>
+      <th>Entrada</th>
+      <th>Salida</th>
+      <th>Costo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Aquí se añadirán las reservas -->
+  </tbody>
+</table>
+
+<script>
+  const tipoEl = document.getElementById('tipo');
+  const entradaEl = document.getElementById('entrada');
+  const salidaEl = document.getElementById('salida');
+  const costoEl = document.getElementById('costo');
+  const form = document.getElementById('formReserva');
+  const tablaBody = document.querySelector('#tablaReservas tbody');
+
+  const tarifas = {
+    carro: 3000,
+    moto: 1500
+  };
+
+  function calcularCosto() {
+    const tipo = tipoEl.value;
+    const entrada = entradaEl.value;
+    const salida = salidaEl.value;
+
+    if (tipo && entrada && salida) {
+      const [hEnt, mEnt] = entrada.split(':').map(Number);
+      const [hSal, mSal] = salida.split(':').map(Number);
+
+      let minutos = (hSal * 60 + mSal) - (hEnt * 60 + mEnt);
+      if (minutos <= 0) {
+        costoEl.textContent = '0';
+        return;
+      }
+
+      let horas = Math.ceil(minutos / 60);
+      let costo = horas * tarifas[tipo];
+      costoEl.textContent = costo.toLocaleString('es-CO');
+    } else {
+      costoEl.textContent = '0';
+    }
+  }
+
+  tipoEl.addEventListener('change', calcularCosto);
+  entradaEl.addEventListener('change', calcularCosto);
+  salidaEl.addEventListener('change', calcularCosto);
+
+  const reservas = [];
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const placa = document.getElementById('placa').value.trim();
+    const nombre = document.getElementById('nombre').value.trim();
+    const identificacion = document.getElementById('identificacion').value.trim();
+    const tipo = tipoEl.value;
+    const entrada = entradaEl.value;
+    const salida = salidaEl.value;
+    const costo = costoEl.textContent;
+
+    if (costo === '0') {
+      alert('La hora de salida debe ser mayor que la hora de entrada.');
+      return;
+    }
+
+    reservas.push({ placa, nombre, identificacion, tipo, entrada, salida, costo });
+    actualizarTabla();
+
+    form.reset();
+    costoEl.textContent = '0';
+  });
+
+  function actualizarTabla() {
+    tablaBody.innerHTML = '';
+    reservas.forEach(reserva => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${reserva.placa}</td>
+        <td>${reserva.nombre}</td>
+        <td>${reserva.identificacion}</td>
+        <td>${reserva.tipo.charAt(0).toUpperCase() + reserva.tipo.slice(1)}</td>
+        <td>${reserva.entrada}</td>
+        <td>${reserva.salida}</td>
+        <td>$${reserva.costo}</td>
+      `;
+      tablaBody.appendChild(tr);
+    });
+  }
+</script>
+
+</body>
+</html>
+

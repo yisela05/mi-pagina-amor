@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema Integrado de Parqueadero</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #98919e;
+      margin: 40px;
+      padding: 0;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .top-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .gif-container {
+      width: 200px;
+    }
+
+    .gif-container h1 {
+      text-align: center;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .btn-link {
+      text-align: center;
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #4caf50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .btn-link:hover {
+      background-color: #45a049;
+    }
+
+    .extra-buttons {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .extra-buttons a {
+      margin: 0 10px;
+      background-color: #007bff;
+    }
+
+    .extra-buttons a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Sistema Integrado de Parqueadero</h1>
+
+  <div class="top-container">
+    <div class="gif-container">
+      <div class="tenor-gif-embed" data-postid="17585133" data-share-method="host" data-aspect-ratio="1" data-width="100%">
+        <a href="https://tenor.com/view/sanolga-usj-macao-i-love-usj-macao-neon-gif-17585133">Sanolga Usj Macao Sticker</a> 
+        from 
+        <a href="https://tenor.com/search/sanolga-stickers">Sanolga Stickers</a>
+      </div>
+      <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+    </div>
+
+    <form id="formIngreso">
+      <h2>Ingreso del Vehículo</h2>
+      <input type="text" id="placa" placeholder="Placa" required />
+      <input type="text" id="nombre" placeholder="Nombre del conductor" required />
+      <input type="text" id="identificacion" placeholder="Identificación" required />
+      <select id="tipo" required>
+        <option value="">Seleccione tipo</option>
+        <option value="Carro">Carro</option>
+        <option value="Moto">Moto</option>
+      </select>
+      <label for="horaEntrada">Hora de Entrada:</label>
+      <input type="time" id="horaEntrada" required />
+      <label for="horaSalida">Hora de Salida:</label>
+      <input type="time" id="horaSalida" required />
+      <a class="btn-link" href="tabla.html">Ingresar Vehículo</a>
+    </form>
+  </div>
+
+  <div class="extra-buttons">
+    <a class="btn-link" href="resirva.html">Reservar Espacio</a>
+    <a class="btn-link" href="pago.html">Realizar Pago</a>
+  </div>
+
+</body>
+</html>
+
