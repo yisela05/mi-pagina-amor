@@ -1,256 +1,137 @@
-body {
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#ffe4ec; /* rosita suave */
     font-family: Arial, sans-serif;
-    margin: 0; /* Eliminado el margen de 300px */
-    padding: 0;
-    background-color: #7f16e2; /* Fondo más claro */
-    color: #333; /* Texto más oscuro */
+    overflow:hidden;
 }
 
-h1, h2 {
-    text-align: center;
-    color: #4CAF50; /* Un color verde para títulos */
+.container{
+    text-align:center;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    max-width:420px;
+    position:relative;
+    z-index:2;
 }
 
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+.buttons{ 
+    margin-top:20px; 
 }
 
-header h1 {
-    margin: 0;
-    color: white; /* Asegura que el título en el header sea blanco */
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
 }
 
-nav button {
-    background-color: #388E3C;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    margin-left: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.yes{
+    background:#ff4d88;
+    color:white;
 }
 
-nav button:hover {
-    background-color: #2E7D32;
+.heart-btn{
+    margin-top:15px;
+    background:#ff85a2;
+    color:white;
 }
 
-main {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+.carta{
+    margin-top:25px;
+    padding:20px;
+    background:#fff0f6;
+    border-radius:15px;
+    animation: aparecer 0.6s ease;
 }
 
-hr {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-    margin: 40px 0;
+.oculto{ 
+    display:none; 
 }
 
-/* --- Sección de Ingreso de Vehículos --- */
-#vehicle-entry-section {
-    padding-bottom: 20px; /* Espacio antes del separador */
+.final-msg{
+    margin-top:15px;
+    color:#ff4d88;
+    animation: aparecer 0.8s ease;
 }
 
-.top-container {
-    display: flex;
-    align-items: flex-start; /* Alinea los elementos al inicio */
-    gap: 50px; /* Reduce el gap a algo más razonable */
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-    justify-content: center; /* Centra los elementos cuando se envuelven */
+.extra-buttons{ 
+    margin-top:15px; 
 }
 
-.gif-container {
-    flex-shrink: 0; /* Evita que se encoja */
-    width: 300px; /* Un tamaño más manejable para el GIF */
-    text-align: center;
-}
-.gif-container h1 { /* Específico para el título del GIF */
-    color: #555;
-    font-size: 1.5em;
-}
-
-form#formIngreso {
-    flex-grow: 1; /* Permite que el formulario ocupe el espacio restante */
-    max-width: 40px; /* Limita el ancho del formulario */
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+.open-btn{
+    padding:8px 16px;
+    margin:5px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
+    background:#ff4d88;
+    color:white;
 }
 
-form#formIngreso input,
-form#formIngreso select,
-form#formIngreso button {
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.extra-msg{
+    margin-top:12px;
+    color:#e60073;
+    font-weight:bold;
+    animation: aparecer 0.6s ease;
 }
 
-form#formIngreso button {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-form#formIngreso button:hover {
-    background-color: #388E3C;
+.choice-buttons{
+    margin-top:15px;
+    position:relative;
+    height:60px;
 }
 
-/* --- Sección de Búsqueda y Reserva de Parqueaderos --- */
-#parking-booking-section {
-    padding-top: 20px; /* Espacio después del separador */
+.yes2, .no2{
+    padding:8px 16px;
+    margin:6px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
 }
 
-#map {
-    height: 500px; /* Altura del mapa */
-    width: 100%;
-    border-radius: 8px;
-    margin-top: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.yes2{
+    background:#ff4d88;
+    color:white;
 }
 
-#search-section {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    align-items: center;
+.no2{
+    background:#999;
+    color:white;
+    position:absolute;
 }
 
-#search-section input {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1em;
+.respuesta-msg{
+    margin-top:12px;
+    font-weight:bold;
+    color:#e60073;
+    animation: aparecer 0.6s ease;
 }
 
-#search-section button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+@keyframes aparecer{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
-#search-section button:hover {
-    background-color: #0056b3;
+/* Corazones flotando */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:20px;
+    animation: flotar linear forwards;
 }
 
-#parkingList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.parking-card {
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    background-color: #fff;
-}
-
-.parking-card h3 {
-    margin-top: 0;
-    color: #4CAF50;
-}
-
-.parking-card button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-}
-
-.parking-card button:hover {
-    background-color: #218838;
-}
-
-/* Modales */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1001; /* Sit on top, por encima de todo */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more responsive */
-    max-width: 500px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    position: relative;
-}
-
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: black;
-    text-decoration: none;
-}
-
-.modal-content input[type="date"],
-.modal-content input[type="time"],
-.modal-content input[type="text"],
-.modal-content input[type="email"],
-.modal-content input[type="password"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.modal-content button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.modal-content button:hover {
-    background-color: #0056b3;
+@keyframes flotar{
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
 }
